@@ -53,6 +53,7 @@ export default function () {
             })
         )
         setEditTitle("");
+
         setEditItemId(null);
     }
     return (
