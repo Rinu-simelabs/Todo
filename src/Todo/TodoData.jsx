@@ -5,10 +5,10 @@ import InputField from "./InputField";
 
 export default function Tododata({ todo, setTodo, isLoading, editItemId, editTitle, setEditTitle, setEditItemId }) {
 
-    const handleCheckBox = (checkedItem) => {
+    const handleCheckBox = (checkedItem, isChecked) => {
         setTodo(previtem =>
             previtem.map((item) =>
-                item.id === checkedItem.id ? { ...item, completed: !item.completed } : item
+                item.id === checkedItem.id ? { ...item, completed: isChecked } : item
 
             )
         )
@@ -42,7 +42,7 @@ export default function Tododata({ todo, setTodo, isLoading, editItemId, editTit
 
                         <li key={todo.id}
                             className="flex justify-between items-center border-2 py-2 mb-2 px-3"
-                        > <CheckItem customClass="mr-3" onClick={() => handleCheckBox(todo)} /> {todo.title}
+                        > <CheckItem customClass="mr-3" onChange={(e) => handleCheckBox(todo, e.target.checked)} /> {todo.title}
                             {todo.completed ? (
                                 <div>
                                     Completed
