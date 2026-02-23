@@ -1,35 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import CheckItem from "./CheckItem";
 import AddBtn from "./AddBtn";
 import InputField from "./InputField";
 
-export default function () {
-    const [todo, setTodo] = useState([]);
-    const [error, setError] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
-    const [editItemId, setEditItemId] = useState(null);
-    const [editTitle, setEditTitle] = useState("");
-
-
-    useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true)
-            try {
-                const response = await fetch("https://jsonplaceholder.typicode.com/todos");
-                if (!response.ok) {
-                    throw new Error("Something went wrong")
-                }
-                const data = await response.json();
-                setTodo(data)
-
-            } catch (err) {
-                setError(err.message)
-            } finally {
-                setIsLoading(false)
-            }
-        }
-        fetchData();
-    }, [])
+export default function Tododata({ todo, setTodo, isLoading, editItemId, editTitle, setEditTitle, setEditItemId }) {
 
     const handleCheckBox = (checkedItem) => {
         setTodo(previtem =>
